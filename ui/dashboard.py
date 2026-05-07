@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import *
 
 
 class Dashboard(QWidget):
+
     def __init__(self, user):
         super().__init__()
 
@@ -13,23 +14,44 @@ class Dashboard(QWidget):
         layout = QVBoxLayout()
 
         # ───── TITLE ─────
-        title = QLabel(f"Welcome, {user['data']['full_name']}")
-        title.setStyleSheet("font-size:18px;font-weight:bold;")
+        title = QLabel(
+            f"Welcome, "
+            f"{user['data']['full_name']}"
+        )
+
+        title.setStyleSheet("""
+            font-size:18px;
+            font-weight:bold;
+        """)
 
         layout.addWidget(title)
 
-        # ───── ROLE LOGIC ─────
-        role = user["data"]["role"]
+        # ─────────────────────────────
+        # ROLE LOGIC
+        # ─────────────────────────────
 
-        if role == "admin":
-            from ui.admin_panel import AdminPanel
-            self.panel = AdminPanel(user)
+        if user["type"] == "citizen":
+
+            from ui.citizen_panel import CitizenPanel
+
+            self.panel = CitizenPanel(user)
 
         else:
-            from ui.employee_panel import EmployeePanel
-            self.panel = EmployeePanel(user)
 
-        # IMPORTANT: embed panel, not separate window
+            role = user["data"].get("role", "")
+
+            if role == "admin":
+
+                from ui.admin_panel import AdminPanel
+
+                self.panel = AdminPanel(user)
+
+            else:
+
+                from ui.employee_panel import EmployeePanel
+
+                self.panel = EmployeePanel(user)
+
         layout.addWidget(self.panel)
 
         self.setLayout(layout)

@@ -393,10 +393,179 @@ INSERT INTO departments(dept_name,dept_code,description) VALUES
 ('Infrastructure','INFRA','Roads, buildings, asset management'),
 ('Citizen Services','CITIZEN','Citizen portal and engagement');
 
--- Default Admin password: Admin@123
-INSERT INTO employees(dept_id,username,password_hash,full_name,role,email)
-VALUES(1,'admin','$2b$12$LQv3c1yqBwlVHpPjrANike98XjlTAUMdP1yS7Trd7T/y5/V7HHdse','System Administrator','admin','admin@smartcity.gov.pk');
-
 UPDATE employees
-SET password_hash = 'Admin@123'
+SET password_hash = '$2b$12$cdjQR3sKv7XFcaW.ly6HGOA1TuAAHN3qzeOPsGCOObMs0PH1m6lpqs'
 WHERE username = 'admin';
+
+-- ADMIN
+INSERT INTO employees
+(dept_id, username, password_hash, full_name, role, email)
+VALUES
+(
+    1,
+    'admin',
+    '$2b$12$DhmcTNgWYminmilJS1hat.sZ9dybM.p8i30nCNg9BCVBopJyiWDTu',
+    'System Administrator',
+    'admin',
+    'admin@smartcity.gov.pk'
+);
+UPDATE employees
+SET
+    password_hash = '$2b$12$DhmcTNgWYminmilJS1hat.sZ9dybM.p8i30nCNg9BCVBopJyiWDTu',
+    role = 'admin',
+    full_name = 'System Administrator'
+WHERE username = 'admin';
+-- OFFICER
+INSERT INTO employees
+(dept_id, username, password_hash, full_name, role, email)
+VALUES
+(
+    2,
+    'officer1',
+    '$2b$12$3xgTYx5vzq66opx6Q8lFR.F39hsnuC5QO8QYLYV3ATMC3W30h1GNu',
+    'Traffic Officer',
+    'officer',
+    'officer@smartcity.gov.pk'
+);
+
+-- WORKER
+INSERT INTO employees
+(dept_id, username, password_hash, full_name, role, email)
+VALUES
+(
+    2,
+    'worker1',
+    '$2b$12$yE4qDP047fq12PSXOL1YkOA01251Xby5mj014nCj02RaNWD5GrWxa',
+    'Field Worker',
+    'worker',
+    'worker@smartcity.gov.pk'
+);
+
+-- EMERGENCY
+INSERT INTO employees
+(dept_id, username, password_hash, full_name, role, email)
+VALUES
+(
+    5,
+    'emergency1',
+    '$2b$12$WlMrbyolf.5NH9.mEdzuC.ARxAt9WXVbwYiCZ/yVcm46ZmF.O2ApO',
+    'Emergency Responder',
+    'emergency',
+    'emergency@smartcity.gov.pk'
+);
+
+-- CITIZEN
+INSERT INTO citizens
+(username, password_hash, full_name, cnic, email)
+VALUES
+(
+    'citizen1',
+    '$2b$12$DyqEBPS8GWGU790YAv8dtOGu6WIJb6gI2ssFLkyQ9KzuGCElDIv6C',
+    'Ali Khan',
+    '42101-1234567-1',
+    'citizen@smartcity.pk'
+);
+UPDATE citizens
+SET
+    username = 'citizen1',
+    password_hash = '$2b$12$DyqEBPS8GWGU790YAv8dtOGu6WIJb6gI2ssFLkyQ9KzuGCElDIv6C',
+    full_name = 'Ali Khan',
+    email = 'citizen@smartcity.pk'
+WHERE cnic = '42101-1234567-1';
+
+SELECT emp_id, username, role, password_hash
+FROM employees
+WHERE username = 'admin';
+
+INSERT INTO tasks
+(
+    complaint_id,
+    dept_id,
+    assigned_to,
+    assigned_by,
+    title,
+    description,
+    priority,
+    status
+)
+VALUES
+(
+    NULL,
+    1,
+    8,   -- ✅ worker1
+    2,   -- admin assigned it
+    'Fix street lights',
+    'Repair broken street lights in Block A',
+    'High',
+    'Pending'
+);
+SELECT emp_id, username, role
+FROM employees;
+
+INSERT INTO tasks
+(
+    complaint_id,
+    dept_id,
+    assigned_to,
+    assigned_by,
+    title,
+    description,
+    priority,
+    status
+)
+VALUES
+(
+    NULL,
+    1,
+    8,
+    2,
+    'Repair Traffic Signal',
+    'Fix malfunctioning traffic signal at Clifton Bridge',
+    'High',
+    'Pending'
+);
+
+INSERT INTO tasks
+(
+    complaint_id,
+    dept_id,
+    assigned_to,
+    assigned_by,
+    title,
+    description,
+    priority,
+    status
+)
+VALUES
+(
+    NULL,
+    2,
+    8,
+    2,
+    'Garbage Collection Route',
+    'Clear waste bins in Gulshan Block 10 route',
+    'Normal',
+    'In Progress'
+);
+INSERT INTO tasks
+(
+    complaint_id,
+    dept_id,
+    assigned_to,
+    assigned_by,
+    title,
+    description,
+    priority,
+    status
+)
+VALUES
+(
+    NULL,
+    7,
+    8,
+    2,
+    'Inspect Road Damage',
+    'Survey potholes on Shahrah-e-Faisal section B',
+    'Medium',
+    'Pending'
+);
