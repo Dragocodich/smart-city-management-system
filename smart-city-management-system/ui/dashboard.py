@@ -29,7 +29,7 @@ class Dashboard(QWidget):
         header_layout = QVBoxLayout()
         header_layout.setContentsMargins(40, 30, 40, 30)
 
-        title = QLabel("🏙️ Smart City Management System")
+        title = QLabel("Smart City Management System")
         title.setFont(QFont("Arial", 28, QFont.Weight.Bold))
         title.setStyleSheet("color: white;")
 

@@ -1139,18 +1139,9 @@ Critical Issues: 0
 
         win.setLayout(layout)
         win.setStyleSheet("background: #ecf0f1;")
-        self# Check if window still exists and is valid
-            try:
-                if self.windows["payments"].isVisible():
-                    self.windows["payments"].raise_()
-                    self.windows["payments"].activateWindow()
-                    return
-                else:
-                    # Window was closed, remove from cache
-                    del self.windows["payments"]
-            except (RuntimeError, AttributeError):
-                # Widget was deleted, remove from cache
-                del self.windows["payments"]
+        self.windows["payments"] = win
+        win.show()
+
     # ─────────────────────────────
     # PAYMENT VERIFICATION WINDOW
     # ─────────────────────────────
@@ -1170,13 +1161,13 @@ Critical Issues: 0
         layout.setSpacing(15)
 
         # Title
-        title = QLabel("💳 Payment Verification Portal")
+        title = QLabel("Payment Verification Portal")
         title.setFont(QFont("Arial", 18, QFont.Weight.Bold))
         title.setStyleSheet("color: #2c3e50;")
         layout.addWidget(title)
 
         # Info banner
-        info = QLabel("🔍 Verify pending payments from citizens. Once verified, the bill will be automatically removed from their dashboard.")
+        info = QLabel("Verify pending payments from citizens. Once verified, the bill will be automatically removed from their dashboard.")
         info.setFont(QFont("Arial", 10))
         info.setStyleSheet("background: #ecf0f1; padding: 10px; border-radius: 6px; color: #34495e;")
         layout.addWidget(info)
@@ -1189,9 +1180,10 @@ Critical Issues: 0
         left_layout = QVBoxLayout()
         left_layout.setSpacing(10)
 
-        list_label = QLabel("⏳ Pending Payment Verifications")
+        list_label = QLabel("Pending Payment Verifications")
         list_label.setFont(QFont("Arial", 12, QFont.Weight.Bold))
         list_label.setStyleSheet("color: #34495e;")
+
         left_layout.addWidget(list_label)
 
         self.pending_payments_list = QListWidget()
