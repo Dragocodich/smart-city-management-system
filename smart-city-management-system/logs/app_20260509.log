@@ -66,3 +66,19 @@
 2026-05-09 14:03:55,057 - utils.logger - INFO - Employee added: E005 - Hasan
 2026-05-09 14:04:14,397 - utils.logger - INFO - Admin logged out
 2026-05-09 14:04:16,431 - utils.logger - INFO - User cancelled admin login and returned to role selector
+2026-05-09 14:11:41,368 - utils.logger - INFO - Starting Smart City Management System...
+2026-05-09 14:11:41,369 - utils.logger - WARNING - PyODBC not available. Database operations will fail.
+2026-05-09 14:11:41,369 - utils.logger - INFO - Database connection established
+2026-05-09 14:11:41,541 - utils.logger - INFO - Application launched successfully
+2026-05-09 14:12:27,790 - utils.logger - INFO - Attempting mock/dev mode authentication for employee worker1
+2026-05-09 14:12:27,791 - utils.logger - INFO - ✅ worker1 authenticated in DEV MODE (role: worker)
+2026-05-09 14:12:27,791 - utils.logger - INFO - User worker1 (employee) logged in successfully
+2026-05-09 14:12:28,597 - utils.logger - INFO - Loaded 3 tasks for Field Worker
+2026-05-09 14:12:28,597 - utils.logger - ERROR - Error loading tasks: 'EmployeePanel' object has no attribute 'stats_pending'
+2026-05-09 14:13:54,770 - utils.logger - INFO - Starting Smart City Management System...
+2026-05-09 14:13:54,770 - utils.logger - WARNING - PyODBC not available. Database operations will fail.
+2026-05-09 14:13:54,770 - utils.logger - INFO - Database connection established
+2026-05-09 14:13:54,906 - utils.logger - INFO - Application launched successfully
+2026-05-09 14:14:31,073 - utils.logger - INFO - Attempting mock/dev mode authentication for employee admin
+2026-05-09 14:14:31,073 - utils.logger - INFO - ✅ admin authenticated in DEV MODE (role: admin)
+2026-05-09 14:14:31,074 - utils.logger - INFO - User admin (admin) logged in successfully

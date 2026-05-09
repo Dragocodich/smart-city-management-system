@@ -259,34 +259,18 @@ class EmployeePanel(QWidget):
     # COMPLETE TASK
     # ─────────────────────────────
     def complete_task(self):
-
-        selected_id = None
-
-        for btn, tid in self.task_buttons:
-
-            if btn.isChecked():
-                selected_id = tid
-                break
-
-        if not selected_id:
-
-            QMessageBox.warning(
-                self,
-                "No Selection",
-                "Please select a task first"
-            )
-
+        """Mark selected task as complete"""
+        current = self.task_list.currentItem()
+        
+        if not current:
+            QMessageBox.warning(self, "Error", "Please select a task")
             return
-
-        db.update_task_status(
-            selected_id,
-            "Completed"
-        )
-
-        QMessageBox.information(
-            self,
-            "Done",
-            "Task marked as completed"
-        )
-
-        self.load_tasks()
+        
+        try:
+            self.logger.info(f"Task marked as complete by {self.emp['full_name']}")
+            self.task_list.takeItem(self.task_list.row(current))
+            QMessageBox.information(self, "Success", "✅ Task marked as complete!")
+            self.load_tasks()
+        except Exception as e:
+            self.logger.error(f"Error completing task: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to complete task: {e}")

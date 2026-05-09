@@ -27,9 +27,16 @@ class AdminPanel(QWidget):
         # ─────────────────────────────
         header_layout = QHBoxLayout()
         
-        raw_role = self.user['data']['role']
-        clean_role = raw_role.replace("System Administrator System Administrator", "System Administrator").strip()
-        clean_role = clean_role.replace("Welcome", "").strip()
+        # Extract and clean role name safely
+        try:
+            raw_role = self.user.get('data', {}).get('role', 'Admin')
+            clean_role = raw_role.replace("System Administrator System Administrator", "System Administrator").strip()
+            clean_role = clean_role.replace("Welcome", "").strip()
+            if not clean_role:
+                clean_role = "Admin"
+        except Exception as e:
+            self.logger.warning(f"Error extracting role: {e}. Using default 'Admin'")
+            clean_role = "Admin"
 
         self.title_label = QLabel(f"👨‍💼 {clean_role} - Control Panel")
         self.title_label.setFont(QFont("Arial", 22, QFont.Weight.Bold))
@@ -1117,9 +1124,18 @@ Critical Issues: 0
 
         win.setLayout(layout)
         win.setStyleSheet("background: #ecf0f1;")
-        self.windows["analytics"] = win
-        win.show()
-
+        self# Check if window still exists and is valid
+            try:
+                if self.windows["payments"].isVisible():
+                    self.windows["payments"].raise_()
+                    self.windows["payments"].activateWindow()
+                    return
+                else:
+                    # Window was closed, remove from cache
+                    del self.windows["payments"]
+            except (RuntimeError, AttributeError):
+                # Widget was deleted, remove from cache
+                del self.windows["payments"]
     # ─────────────────────────────
     # PAYMENT VERIFICATION WINDOW
     # ─────────────────────────────
