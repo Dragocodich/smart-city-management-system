@@ -82,3 +82,10 @@
 2026-05-09 14:14:31,073 - utils.logger - INFO - Attempting mock/dev mode authentication for employee admin
 2026-05-09 14:14:31,073 - utils.logger - INFO - ✅ admin authenticated in DEV MODE (role: admin)
 2026-05-09 14:14:31,074 - utils.logger - INFO - User admin (admin) logged in successfully
+2026-05-09 14:28:47,267 - utils.logger - INFO - Starting Smart City Management System...
+2026-05-09 14:28:47,267 - utils.logger - WARNING - PyODBC not available. Database operations will fail.
+2026-05-09 14:28:47,267 - utils.logger - INFO - Database connection established
+2026-05-09 14:28:47,400 - utils.logger - INFO - Application launched successfully
+2026-05-09 14:29:07,901 - utils.logger - INFO - Attempting mock/dev mode authentication for employee admin
+2026-05-09 14:29:07,901 - utils.logger - INFO - ✅ admin authenticated in DEV MODE (role: admin)
+2026-05-09 14:29:07,901 - utils.logger - INFO - User admin (admin) logged in successfully

@@ -35,19 +35,19 @@ class RoleSelector(QWidget):
         line.setStyleSheet("background-color: #ecf0f1;")
 
         # BUTTONS
-        btn_admin = QPushButton("👨‍💼 Login as Admin")
+        btn_admin = QPushButton("Login as Admin")
         btn_admin.setMinimumHeight(60)
         btn_admin.setFont(QFont("Arial", 12, QFont.Weight.Bold))
         btn_admin.setCursor(Qt.CursorShape.PointingHandCursor)
         btn_admin.setStyleSheet(self._get_button_style("#e74c3c"))
 
-        btn_employee = QPushButton("👨‍💻 Login as Employee")
+        btn_employee = QPushButton("Login as Employee")
         btn_employee.setMinimumHeight(60)
         btn_employee.setFont(QFont("Arial", 12, QFont.Weight.Bold))
         btn_employee.setCursor(Qt.CursorShape.PointingHandCursor)
         btn_employee.setStyleSheet(self._get_button_style("#3498db"))
 
-        btn_citizen = QPushButton("👤 Login as Citizen")
+        btn_citizen = QPushButton("Login as Citizen")
         btn_citizen.setMinimumHeight(60)
         btn_citizen.setFont(QFont("Arial", 12, QFont.Weight.Bold))
         btn_citizen.setCursor(Qt.CursorShape.PointingHandCursor)

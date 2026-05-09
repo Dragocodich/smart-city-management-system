@@ -33,7 +33,8 @@ class Dashboard(QWidget):
         title.setFont(QFont("Arial", 28, QFont.Weight.Bold))
         title.setStyleSheet("color: white;")
 
-        subtitle = QLabel(f"Welcome back, {user['data']['full_name']}!")
+        full_name = user.get('data', {}).get('full_name', 'User')
+        subtitle = QLabel(f"Welcome back, {full_name}!")
         subtitle.setFont(QFont("Arial", 14))
         subtitle.setStyleSheet("color: rgba(255, 255, 255, 0.9);")
 

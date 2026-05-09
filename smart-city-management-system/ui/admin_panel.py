@@ -59,7 +59,7 @@ class AdminPanel(QWidget):
         # ─────────────────────────────
         # ADMIN MENU BUTTONS
         # ─────────────────────────────
-        menu_label = QLabel("🎛️ Administration Menu")
+        menu_label = QLabel("Administration Menu")
         menu_label.setFont(QFont("Arial", 14, QFont.Weight.Bold))
         menu_label.setStyleSheet("color: #34495e; margin-top: 20px;")
         self.layout_main.addWidget(menu_label)
@@ -68,34 +68,49 @@ class AdminPanel(QWidget):
         button_layout = QGridLayout()
         button_layout.setSpacing(15)
 
-        self.btn_complaints = QPushButton("📋 Manage Complaints")
+        self.btn_complaints = QPushButton("Manage Complaints")
         self.btn_complaints.setMinimumHeight(80)
         self.btn_complaints.setFont(QFont("Arial", 11, QFont.Weight.Bold))
-        self.btn_complaints.setStyleSheet(self._get_menu_button_style("#3498db"))
+        try:
+            self.btn_complaints.setStyleSheet(self._get_menu_button_style("#3498db"))
+        except Exception as e:
+            self.logger.warning(f"Failed to apply stylesheet to complaints button: {e}")
         self.btn_complaints.clicked.connect(self.open_complaints)
 
-        self.btn_tasks = QPushButton("✅ Assign Tasks")
+        self.btn_tasks = QPushButton("Assign Tasks")
         self.btn_tasks.setMinimumHeight(80)
         self.btn_tasks.setFont(QFont("Arial", 11, QFont.Weight.Bold))
-        self.btn_tasks.setStyleSheet(self._get_menu_button_style("#27ae60"))
+        try:
+            self.btn_tasks.setStyleSheet(self._get_menu_button_style("#27ae60"))
+        except Exception as e:
+            self.logger.warning(f"Failed to apply stylesheet to tasks button: {e}")
         self.btn_tasks.clicked.connect(self.open_task_assigner)
 
-        self.btn_employees = QPushButton("👥 Manage Employees")
+        self.btn_employees = QPushButton("Manage Employees")
         self.btn_employees.setMinimumHeight(80)
         self.btn_employees.setFont(QFont("Arial", 11, QFont.Weight.Bold))
-        self.btn_employees.setStyleSheet(self._get_menu_button_style("#f39c12"))
+        try:
+            self.btn_employees.setStyleSheet(self._get_menu_button_style("#f39c12"))
+        except Exception as e:
+            self.logger.warning(f"Failed to apply stylesheet to employees button: {e}")
         self.btn_employees.clicked.connect(self.open_employees)
 
-        self.btn_analytics = QPushButton("📊 Analytics")
+        self.btn_analytics = QPushButton("Analytics")
         self.btn_analytics.setMinimumHeight(80)
         self.btn_analytics.setFont(QFont("Arial", 11, QFont.Weight.Bold))
-        self.btn_analytics.setStyleSheet(self._get_menu_button_style("#e74c3c"))
+        try:
+            self.btn_analytics.setStyleSheet(self._get_menu_button_style("#e74c3c"))
+        except Exception as e:
+            self.logger.warning(f"Failed to apply stylesheet to analytics button: {e}")
         self.btn_analytics.clicked.connect(self.open_analytics)
 
-        self.btn_payments = QPushButton("💳 Verify Payments")
+        self.btn_payments = QPushButton("Verify Payments")
         self.btn_payments.setMinimumHeight(80)
         self.btn_payments.setFont(QFont("Arial", 11, QFont.Weight.Bold))
-        self.btn_payments.setStyleSheet(self._get_menu_button_style("#16a085"))
+        try:
+            self.btn_payments.setStyleSheet(self._get_menu_button_style("#16a085"))
+        except Exception as e:
+            self.logger.warning(f"Failed to apply stylesheet to payments button: {e}")
         self.btn_payments.clicked.connect(self.open_payment_verification)
 
         button_layout.addWidget(self.btn_complaints, 0, 0)
@@ -109,7 +124,7 @@ class AdminPanel(QWidget):
         # ─────────────────────────────
         # STATS SECTION
         # ─────────────────────────────
-        stats_label = QLabel("📈 Quick Stats")
+        stats_label = QLabel("Quick Stats")
         stats_label.setFont(QFont("Arial", 14, QFont.Weight.Bold))
         stats_label.setStyleSheet("color: #34495e; margin-top: 20px;")
         self.layout_main.addWidget(stats_label)
