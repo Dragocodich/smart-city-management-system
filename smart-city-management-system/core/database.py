@@ -212,6 +212,7 @@ class DatabaseManager:
                 row = self.execute_single(query, (username,))
                 if row:
                     if self.verify_password(password, row[3]):
+                        self.logger.info(f"✅ Employee {username} authenticated via database")
                         return {
                             "type": "employee",
                             "data": {
@@ -220,14 +221,19 @@ class DatabaseManager:
                                 "full_name": row[2]
                             }
                         }
+                    else:
+                        self.logger.warning(f"Employee {username} found but password incorrect")
+                else:
+                    self.logger.warning(f"Employee {username} not found in database (or inactive)")
             except Exception as e:
-                self.logger.warning(f"Database query failed, falling back to dev mode: {e}")
+                self.logger.warning(f"Database query failed for employee auth, falling back to dev mode: {e}")
         
         # FALLBACK: USE MOCK AUTHENTICATION (DEVELOPMENT MODE)
+        self.logger.info(f"Attempting mock/dev mode authentication for employee {username}")
         if username in self.mock_employees:
             mock_user = self.mock_employees[username]
             if mock_user['password'] == password:
-                self.logger.info(f"✅ {username} authenticated in DEV MODE")
+                self.logger.info(f"✅ {username} authenticated in DEV MODE (role: {mock_user['role']})")
                 return {
                     "type": "employee",
                     "data": {
@@ -236,6 +242,10 @@ class DatabaseManager:
                         "full_name": mock_user['full_name']
                     }
                 }
+            else:
+                self.logger.warning(f"Employee {username} found in mock data but password incorrect")
+        else:
+            self.logger.warning(f"Employee {username} not found in mock data. Available: {list(self.mock_employees.keys())}")
         
         raise AuthenticationException("Invalid credentials")
 

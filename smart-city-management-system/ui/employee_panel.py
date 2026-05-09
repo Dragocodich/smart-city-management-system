@@ -7,12 +7,13 @@ from utils.logger import Logger
 
 class EmployeePanel(QWidget):
 
-    def __init__(self, user):
+    def __init__(self, user, on_logout=None):
         super().__init__()
 
         self.user = user
         self.logger = Logger()
         self.emp = user["data"]
+        self.on_logout = on_logout
 
         self.setWindowTitle("Employee Dashboard")
         self.setGeometry(300, 200, 900, 600)
@@ -245,9 +246,14 @@ class EmployeePanel(QWidget):
         """Logout and return to role selector"""
         self.logger.info(f"{self.emp['full_name']} logged out")
         
-        # Close all windows and exit
-        from PyQt6.QtWidgets import QApplication
-        QApplication.quit()
+        # Call logout callback to close dashboard
+        if self.on_logout:
+            self.on_logout()
+        else:
+            # Fallback: close parent window
+            parent = self.parent()
+            if parent:
+                parent.close()
 
     # ─────────────────────────────
     # COMPLETE TASK

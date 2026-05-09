@@ -327,8 +327,14 @@ class LoginWindow(QWidget):
             QTimer.singleShot(800, lambda: self.open_dashboard(user))
 
         except AuthenticationException as e:
-            self._show_error("❌ Invalid username or password")
-            self.logger.warning(f"Failed login attempt for user: {username}")
+            # Check if it's an employee login failure
+            if self.role == "employee":
+                help_msg = "\n\n💡 Demo Employees:\nUsername: worker1 | Pass: Worker@123\nUsername: officer1 | Pass: Officer@123\n\n(Or use 'admin' with 'Admin@123')"
+                self._show_error(f"❌ Invalid credentials\n{help_msg}")
+                self.logger.warning(f"Failed employee login for user: {username}")
+            else:
+                self._show_error("❌ Invalid username or password")
+                self.logger.warning(f"Failed {self.role} login attempt for user: {username}")
         except Exception as e:
             error_msg = str(e)
             if "Database" in error_msg or "pyodbc" in error_msg.lower():
@@ -375,6 +381,17 @@ class LoginWindow(QWidget):
 
         from ui.dashboard import Dashboard
 
-        self.dashboard = Dashboard(user)
+        def on_logout():
+            """Callback when user logs out from dashboard"""
+            # Show login window again
+            self.show()
+            # Clear the password field
+            self.password.setText("")
+            self.username.setText("")
+            self.login_btn.setEnabled(True)
+            self.login_btn.setText("🔓 Login")
+
+        self.dashboard = Dashboard(user, on_logout)
         self.dashboard.show()
-        self.close()
+        # Hide (don't close) the login window so we can return to it after logout
+        self.hide()

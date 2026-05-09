@@ -7,11 +7,12 @@ from utils.logger import Logger
 
 class AdminPanel(QWidget):
 
-    def __init__(self, user):
+    def __init__(self, user, on_logout=None):
         super().__init__()
 
         self.user = user
         self.logger = Logger()
+        self.on_logout = on_logout
 
         self.setWindowTitle("Admin Control Panel")
 
@@ -1368,8 +1369,12 @@ Citizen Account: ✅ Active"""
                 win.close()
             except:
                 pass
-        # Close main window
-        self.close()
+        # Call logout callback
+        if self.on_logout:
+            self.on_logout()
+        else:
+            # Fallback: close main window
+            self.close()
 
     # ─────────────────────────────
     # HELPER METHODS FOR UI STYLING

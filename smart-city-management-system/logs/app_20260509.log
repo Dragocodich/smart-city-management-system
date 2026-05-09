@@ -1,0 +1,30 @@
+2026-05-09 13:19:00,689 - utils.logger - INFO - Starting Smart City Management System...
+2026-05-09 13:19:00,689 - utils.logger - WARNING - PyODBC not available. Database operations will fail.
+2026-05-09 13:19:00,690 - utils.logger - INFO - Database connection established
+2026-05-09 13:19:00,827 - utils.logger - INFO - Application launched successfully
+2026-05-09 13:19:11,276 - utils.logger - INFO - ✅ admin authenticated in DEV MODE
+2026-05-09 13:19:11,276 - utils.logger - INFO - User admin (admin) logged in successfully
+2026-05-09 13:19:14,961 - utils.logger - INFO - Complaints loaded successfully
+2026-05-09 13:20:10,495 - utils.logger - INFO - Admin logged out
+2026-05-09 13:52:25,706 - utils.logger - INFO - Starting Smart City Management System...
+2026-05-09 13:52:25,707 - utils.logger - WARNING - PyODBC not available. Database operations will fail.
+2026-05-09 13:52:25,707 - utils.logger - INFO - Database connection established
+2026-05-09 13:52:25,852 - utils.logger - INFO - Application launched successfully
+2026-05-09 13:52:36,939 - utils.logger - ERROR - Authentication error: Unknown role: employee
+2026-05-09 13:52:36,939 - utils.logger - WARNING - Failed login attempt for user: worker1
+2026-05-09 13:52:58,186 - utils.logger - ERROR - Authentication error: Unknown role: employee
+2026-05-09 13:52:58,187 - utils.logger - WARNING - Failed login attempt for user: worker1
+2026-05-09 13:53:01,981 - utils.logger - ERROR - Authentication error: Unknown role: employee
+2026-05-09 13:53:01,982 - utils.logger - WARNING - Failed login attempt for user: worker1
+2026-05-09 13:53:02,156 - utils.logger - ERROR - Authentication error: Unknown role: employee
+2026-05-09 13:53:02,156 - utils.logger - WARNING - Failed login attempt for user: worker1
+2026-05-09 13:53:02,345 - utils.logger - ERROR - Authentication error: Unknown role: employee
+2026-05-09 13:53:02,345 - utils.logger - WARNING - Failed login attempt for user: worker1
+2026-05-09 13:53:02,526 - utils.logger - ERROR - Authentication error: Unknown role: employee
+2026-05-09 13:53:02,526 - utils.logger - WARNING - Failed login attempt for user: worker1
+2026-05-09 13:53:04,320 - utils.logger - INFO - User cancelled employee login and returned to role selector
+2026-05-09 13:53:19,598 - utils.logger - INFO - ✅ citizen1 authenticated in DEV MODE
+2026-05-09 13:53:19,598 - utils.logger - INFO - User citizen1 (citizen) logged in successfully
+2026-05-09 13:53:20,404 - utils.logger - INFO - Loaded 3 complaints
+2026-05-09 13:53:20,405 - utils.logger - INFO - Loaded 3 bills
+2026-05-09 13:53:27,647 - utils.logger - INFO - Ali Khan logged out

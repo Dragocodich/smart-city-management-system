@@ -7,11 +7,12 @@ from utils.logger import Logger
 
 class CitizenPanel(QWidget):
 
-    def __init__(self, user):
+    def __init__(self, user, on_logout=None):
         super().__init__()
 
         self.user = user["data"]
         self.logger = Logger()
+        self.on_logout = on_logout
 
         self.setWindowTitle("Citizen Dashboard")
         self.setGeometry(300, 200, 950, 650)
@@ -392,8 +393,14 @@ Pay online or at nearest office.
     # LOGOUT
     # ─────────────────────────────
     def logout(self):
-        """Logout and exit"""
+        """Logout and return to role selector"""
         self.logger.info(f"{self.user['full_name']} logged out")
         
-        from PyQt6.QtWidgets import QApplication
-        QApplication.quit()
+        # Call logout callback to close dashboard
+        if self.on_logout:
+            self.on_logout()
+        else:
+            # Fallback: close parent window
+            parent = self.parent()
+            if parent:
+                parent.close()

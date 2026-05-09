@@ -5,10 +5,11 @@ from PyQt6.QtGui import QFont
 
 class Dashboard(QWidget):
 
-    def __init__(self, user):
+    def __init__(self, user, on_logout=None):
         super().__init__()
 
         self.user = user
+        self.on_logout = on_logout
 
         self.setWindowTitle("Smart City Management System - Dashboard")
         self.setGeometry(100, 50, 1200, 800)
@@ -53,15 +54,15 @@ class Dashboard(QWidget):
         # ROLE-BASED PANEL
         if user["type"] == "citizen":
             from ui.citizen_panel import CitizenPanel
-            self.panel = CitizenPanel(user)
+            self.panel = CitizenPanel(user, self.handle_logout)
         else:
             role = user["data"].get("role", "")
             if role == "admin":
                 from ui.admin_panel import AdminPanel
-                self.panel = AdminPanel(user)
+                self.panel = AdminPanel(user, self.handle_logout)
             else:
                 from ui.employee_panel import EmployeePanel
-                self.panel = EmployeePanel(user)
+                self.panel = EmployeePanel(user, self.handle_logout)
 
         # Adjust panel styling
         self.panel.setStyleSheet("""
@@ -76,3 +77,9 @@ class Dashboard(QWidget):
         layout.addWidget(content)
 
         self.setLayout(layout)
+
+    def handle_logout(self):
+        """Handle logout from any panel"""
+        if self.on_logout:
+            self.on_logout()
+        self.close()
