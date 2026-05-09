@@ -198,9 +198,18 @@ class AdminPanel(QWidget):
     def open_complaints(self):
 
         if "complaints" in self.windows:
-            self.windows["complaints"].raise_()
-            self.windows["complaints"].activateWindow()
-            return
+            # Check if window still exists and is valid
+            try:
+                if self.windows["complaints"].isVisible():
+                    self.windows["complaints"].raise_()
+                    self.windows["complaints"].activateWindow()
+                    return
+                else:
+                    # Window was closed, remove from cache
+                    del self.windows["complaints"]
+            except (RuntimeError, AttributeError):
+                # Widget was deleted, remove from cache
+                del self.windows["complaints"]
 
         win = QWidget()
         win.setWindowTitle("Manage Complaints")
@@ -411,9 +420,18 @@ Resolution: Pending"""
     def open_task_assigner(self):
 
         if "tasks" in self.windows:
-            self.windows["tasks"].raise_()
-            self.windows["tasks"].activateWindow()
-            return
+            # Check if window still exists and is valid
+            try:
+                if self.windows["tasks"].isVisible():
+                    self.windows["tasks"].raise_()
+                    self.windows["tasks"].activateWindow()
+                    return
+                else:
+                    # Window was closed, remove from cache
+                    del self.windows["tasks"]
+            except (RuntimeError, AttributeError):
+                # Widget was deleted, remove from cache
+                del self.windows["tasks"]
 
         win = QWidget()
         win.setWindowTitle("Assign Tasks")
@@ -654,9 +672,18 @@ Resolution: Pending"""
     def open_employees(self):
 
         if "employees" in self.windows:
-            self.windows["employees"].raise_()
-            self.windows["employees"].activateWindow()
-            return
+            # Check if window still exists and is valid
+            try:
+                if self.windows["employees"].isVisible():
+                    self.windows["employees"].raise_()
+                    self.windows["employees"].activateWindow()
+                    return
+                else:
+                    # Window was closed, remove from cache
+                    del self.windows["employees"]
+            except (RuntimeError, AttributeError):
+                # Widget was deleted, remove from cache
+                del self.windows["employees"]
 
         win = QWidget()
         win.setWindowTitle("Manage Employees")
@@ -910,9 +937,18 @@ Rating: 4.8/5"""
     def open_analytics(self):
 
         if "analytics" in self.windows:
-            self.windows["analytics"].raise_()
-            self.windows["analytics"].activateWindow()
-            return
+            # Check if window still exists and is valid
+            try:
+                if self.windows["analytics"].isVisible():
+                    self.windows["analytics"].raise_()
+                    self.windows["analytics"].activateWindow()
+                    return
+                else:
+                    # Window was closed, remove from cache
+                    del self.windows["analytics"]
+            except (RuntimeError, AttributeError):
+                # Widget was deleted, remove from cache
+                del self.windows["analytics"]
 
         win = QWidget()
         win.setWindowTitle("Analytics Dashboard")

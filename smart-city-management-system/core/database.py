@@ -188,6 +188,11 @@ class DatabaseManager:
     def authenticate_user(self, username, password, role):
         """Authenticate user based on role"""
         try:
+            # Map "employee" UI role to valid database roles
+            if role == "employee":
+                # Default generic "employee" role to "worker" for development
+                role = "worker"
+            
             if role in ["admin", "officer", "worker", "emergency"]:
                 return self._authenticate_employee(username, password, role)
             elif role == "citizen":

@@ -329,8 +329,8 @@ class LoginWindow(QWidget):
         except AuthenticationException as e:
             # Check if it's an employee login failure
             if self.role == "employee":
-                help_msg = "\n\n💡 Demo Employees:\nUsername: worker1 | Pass: Worker@123\nUsername: officer1 | Pass: Officer@123\n\n(Or use 'admin' with 'Admin@123')"
-                self._show_error(f"❌ Invalid credentials\n{help_msg}")
+                help_msg = "\n\n💡 Demo Employees:\nUsername: worker1 | Pass: Worker@123\nUsername: officer1 | Pass: Officer@123\n\n(Note: 'employee' role maps to 'worker' for authentication)"
+                self._show_error(f"❌ Login failed\n{help_msg}")
                 self.logger.warning(f"Failed employee login for user: {username}")
             else:
                 self._show_error("❌ Invalid username or password")
